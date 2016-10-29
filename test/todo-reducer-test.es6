@@ -21,7 +21,7 @@ describe('todo-reducer', () => {
       .toEqual(state)
   })
 
-  it('should return a new state for ADD_TODO', () => {
+  it('should return a new state with "ADD_TODO"', () => {
     const action = {
       type: 'ADD_TODO',
       id:   1234,
@@ -39,7 +39,7 @@ describe('todo-reducer', () => {
       .toEqual(stateAfter)
   })
 
-  it('should toggle state "completed"', () => {
+  it('should toggle state "completed" with "TOGGLE_TODO"', () => {
     const stateBefore = {
       id:   1234,
       text: 'Hoge',
