@@ -11,12 +11,15 @@ class TodoAdd extends React.Component {
     return (
       <div>
         <form action="#" onSubmit={(e) => {
-          todoApp.dispatch({
-            type: 'ADD_TODO',
-            id: ++nextId,
-            text: e.target.text.value
-          })
-          e.target.text.value = ''
+          const text = e.target.text.value
+          if (text.length) {
+            todoApp.dispatch({
+              type: 'ADD_TODO',
+              id: ++nextId,
+              text: text
+            })
+            e.target.text.value = ''
+          }
           e.preventDefault()
         }}>
           <input type="text" placeholder="A todo" name="text" />
