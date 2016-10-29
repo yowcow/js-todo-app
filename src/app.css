@@ -5,3 +5,8 @@ body {
     font-style: normal;
     font-weight: 400;
 }
+
+body a {
+    color: #fff;
+    text-decoration: none;
+}
