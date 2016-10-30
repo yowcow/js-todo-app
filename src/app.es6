@@ -1,5 +1,8 @@
 require('./app.css')
 
+global.jQuery = require('jquery')
+require('bootstrap')
+
 import React from 'react'
 import ReactDOM from 'react-dom'
 import todoApp from './todo-app.es6'
@@ -9,8 +12,8 @@ let nextId = 0
 class TodoAdd extends React.Component {
   render() {
     return (
-      <div>
-        <form action="#" onSubmit={(e) => {
+      <div className="row">
+        <form className="form-inline" action="#" onSubmit={(e) => {
           const text = e.target.text.value
           if (text.length) {
             todoApp.dispatch({
@@ -22,8 +25,11 @@ class TodoAdd extends React.Component {
           }
           e.preventDefault()
         }}>
-          <input type="text" placeholder="A todo" name="text" />
-          <button type="submit">Add Todo</button>
+          <div className="form-group">
+            <label className="sr-only" for="input-text">A todo</label>
+            <input className="form-control" type="text" placeholder="A todo" name="text" />
+          </div>
+          <button type="submit" className="btn btn-default">Add Todo</button>
         </form>
       </div>
     )
@@ -59,17 +65,19 @@ class TodoApp extends React.Component {
       <div>
         <h1>Todo</h1>
         <TodoAdd />
-        <ul>
-          {
-            this.props.todos.map(t => {
-              return (
-                <li key={t.id}>
-                  <TodoItem item={t} />
-                </li>
-              )
-            })
-          }
-        </ul>
+        <div className="row">
+          <ul className="list-unstyled">
+            {
+              this.props.todos.map(t => {
+                return (
+                  <li key={t.id}>
+                    <TodoItem item={t} />
+                  </li>
+                )
+              })
+            }
+          </ul>
+        </div>
       </div>
     )
   }
