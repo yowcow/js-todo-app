@@ -26,7 +26,7 @@ class TodoAdd extends React.Component {
           e.preventDefault()
         }}>
           <div className="form-group">
-            <label className="sr-only" for="input-text">A todo</label>
+            <label className="sr-only" htmlFor="input-text">A todo</label>
             <input className="form-control" type="text" placeholder="A todo" name="text" />
           </div>
           <button type="submit" className="btn btn-default">Add Todo</button>
@@ -83,13 +83,54 @@ class TodoApp extends React.Component {
   }
 }
 
+const FilterLink = ({
+  filter,
+  children
+}) => {
+  return <a href="#" onClick={
+    e => {
+      todoApp.dispatch({
+        type: 'SET_VISIBILITY_FILTER',
+        filter: filter
+      })
+      e.preventDefault()
+    }
+  }>{ children }</a>
+}
+
+const getVisibleTodos = (
+  todos,
+  filter
+) => {
+  switch (filter) {
+    case 'SHOW_ALL':
+      return todos
+    case 'SHOW_ACTIVE':
+      return todos.filter(t => !t.completed)
+    case 'SHOW_COMPLETED':
+      return todos.filter(t => t.completed)
+    default:
+      return todos
+  }
+}
+
 const render = () => {
   const state = todoApp.getState()
   ReactDOM.render(
-    <TodoApp
-      todos={state.todos}
-      visibilityFilter={state.visibilityFilter}
-    />,
+    <div>
+      <TodoApp
+        todos={getVisibleTodos(state.todos, state.visibilityFilter)}
+        visibilityFilter={state.visibilityFilter}
+      />
+      <p>
+        Show: {' '}
+        <FilterLink filter="SHOW_ALL">All</FilterLink>
+        {' '}
+        <FilterLink filter="SHOW_ACTIVE">Active</FilterLink>
+        {' '}
+        <FilterLink filter="SHOW_COMPLETED">Completed</FilterLink>
+      </p>
+    </div>,
     document.getElementById('app')
   )
 }
