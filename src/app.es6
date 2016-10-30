@@ -5,103 +5,8 @@ require('bootstrap')
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import todoApp from './todo-app.es6'
-
-let nextId = 0
-
-class TodoAdd extends React.Component {
-  render() {
-    return (
-      <div className="row">
-        <form className="form-inline" action="#" onSubmit={(e) => {
-          const text = e.target.text.value
-          if (text.length) {
-            todoApp.dispatch({
-              type: 'ADD_TODO',
-              id: ++nextId,
-              text: text
-            })
-            e.target.text.value = ''
-          }
-          e.preventDefault()
-        }}>
-          <div className="form-group">
-            <label className="sr-only" htmlFor="input-text">A todo</label>
-            <input className="form-control" type="text" placeholder="A todo" name="text" />
-          </div>
-          <button type="submit" className="btn btn-default">Add Todo</button>
-        </form>
-      </div>
-    )
-  }
-}
-
-class TodoItem extends React.Component {
-  render() {
-    const t = this.props.item
-
-    return (
-      <a href="#"
-        onClick={(e) => {
-          todoApp.dispatch({
-            type: 'TOGGLE_TODO',
-            id: t.id
-          })
-          e.preventDefault()
-        }}
-        style={{
-          textDecoration: t.completed
-            ? 'line-through'
-            : 'none'
-        }}
-        >{t.text}</a>
-    )
-  }
-}
-
-class TodoApp extends React.Component {
-  render() {
-    return (
-      <div>
-        <h1>Todo</h1>
-        <TodoAdd />
-        <div className="row">
-          <ul className="list-unstyled">
-            {
-              this.props.todos.map(t => {
-                return (
-                  <li key={t.id}>
-                    <TodoItem item={t} />
-                  </li>
-                )
-              })
-            }
-          </ul>
-        </div>
-      </div>
-    )
-  }
-}
-
-const FilterLink = ({
-  filter,
-  currentFilter,
-  children
-}) => {
-  return filter != currentFilter ? (
-    <a href="#" onClick={
-      e => {
-        todoApp.dispatch({
-          type: 'SET_VISIBILITY_FILTER',
-          filter: filter
-        })
-        e.preventDefault()
-      }
-    }>{children}</a>
-  ) : (
-    <span>{children}</span>
-  )
-}
+import todoStore from './todo-app.es6'
+import TodoApp from './todo-app-component.es6'
 
 const getVisibleTodos = (
   todos,
@@ -123,37 +28,19 @@ const render = () => {
   const {
     todos,
     visibilityFilter
-  } = todoApp.getState()
+  } = todoStore.getState()
 
   ReactDOM.render(
-    <div>
-      <TodoApp
-        todos={getVisibleTodos(todos, visibilityFilter)}
-        visibilityFilter={visibilityFilter}
-      />
-      <p>
-        Show: {' '}
-        <FilterLink
-          filter="SHOW_ALL"
-          currentFilter={visibilityFilter}
-        >All</FilterLink>
-        {' '}
-        <FilterLink
-          filter="SHOW_ACTIVE"
-          currentFilter={visibilityFilter}
-        >Active</FilterLink>
-        {' '}
-        <FilterLink
-          filter="SHOW_COMPLETED"
-          currentFilter={visibilityFilter}
-        >Completed</FilterLink>
-      </p>
-    </div>,
+    <TodoApp
+      store={todoStore}
+      todos={getVisibleTodos(todos, visibilityFilter)}
+      visibilityFilter={visibilityFilter}
+    />,
     document.getElementById('app')
   )
 }
 
-todoApp.subscribe(render)
-todoApp.subscribe(() => console.log(todoApp.getState()))
+todoStore.subscribe(render)
+todoStore.subscribe(() => console.log(todoStore.getState()))
 
 render()
