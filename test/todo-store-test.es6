@@ -1,6 +1,6 @@
 import expect from 'expect'
 import freeze from 'deep-freeze'
-import todoApp from '../src/todo-app.es6'
+import todoStore from '../src/todo-store.es6'
 
 describe('todo-app', () => {
 
@@ -10,7 +10,7 @@ describe('todo-app', () => {
       visibilityFilter: 'SHOW_ALL'
     }
 
-    expect(todoApp.getState()).toEqual(state)
+    expect(todoStore.getState()).toEqual(state)
   })
 
   it('should add a todo', () => {
@@ -32,9 +32,9 @@ describe('todo-app', () => {
 
     freeze(action)
 
-    todoApp.dispatch(action)
+    todoStore.dispatch(action)
 
-    expect(todoApp.getState()).toEqual(state)
+    expect(todoStore.getState()).toEqual(state)
   })
 
   it('should toggle a todo "completed"', () => {
@@ -55,9 +55,9 @@ describe('todo-app', () => {
 
     freeze(action)
 
-    todoApp.dispatch(action)
+    todoStore.dispatch(action)
 
-    expect(todoApp.getState()).toEqual(state)
+    expect(todoStore.getState()).toEqual(state)
   })
 
   it('should remove a todo', () => {
@@ -72,9 +72,9 @@ describe('todo-app', () => {
 
     freeze(action)
 
-    todoApp.dispatch(action)
+    todoStore.dispatch(action)
 
-    expect(todoApp.getState()).toEqual(state)
+    expect(todoStore.getState()).toEqual(state)
   })
 
   it('should apply visibilityFilter', () => {
@@ -89,8 +89,8 @@ describe('todo-app', () => {
 
     freeze(action)
 
-    todoApp.dispatch(action)
+    todoStore.dispatch(action)
 
-    expect(todoApp.getState()).toEqual(state)
+    expect(todoStore.getState()).toEqual(state)
   })
 })
