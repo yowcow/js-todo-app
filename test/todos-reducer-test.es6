@@ -1,6 +1,6 @@
 import expect from 'expect'
 import freeze from 'deep-freeze'
-import todos from '../src/todos-reducer.es6'
+import todos from '../src/todos-reducer'
 
 describe('todos-reducer', () => {
 

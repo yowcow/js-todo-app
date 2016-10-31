@@ -1,6 +1,6 @@
 import expect from 'expect'
 import freeze from 'deep-freeze'
-import todo from '../src/todo-reducer.es6'
+import todo from '../src/todo-reducer'
 
 describe('todo-reducer', () => {
 

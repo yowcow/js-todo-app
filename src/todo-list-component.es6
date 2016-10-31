@@ -1,5 +1,5 @@
 import React from 'react'
-import Todo from './todo-component.es6'
+import Todo from './todo-component'
 
 const TodoList = ({
   todos,

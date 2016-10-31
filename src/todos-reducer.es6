@@ -1,4 +1,4 @@
-import todo from './todo-reducer.es6'
+import todo from './todo-reducer'
 
 const todos = (state = [], action) => {
   switch (action.type) {

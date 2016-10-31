@@ -2,7 +2,7 @@ const webpack = require('webpack')
 
 module.exports = {
   entry: {
-    app: './src/app.es6',
+    app: './src/app.js',
   },
   devtool: 'source-map',
   output: {
@@ -17,7 +17,7 @@ module.exports = {
         loader: 'style!css'
       },
       {
-        test: /\.es6$/,
+        test: /\.js$/,
         exclude: /node_modules/,
         loader: 'babel-loader'
       }

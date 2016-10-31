@@ -1,6 +1,6 @@
 import expect from 'expect'
 import freeze from 'deep-freeze'
-import todoStore from '../src/todo-store.es6'
+import todoStore from '../src/todo-store'
 
 describe('todo-app', () => {
 

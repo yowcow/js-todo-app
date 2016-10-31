@@ -1,7 +1,7 @@
 import React from 'react'
-import AddTodo from './add-todo-component.es6'
-import TodoList from './todo-list-component.es6'
-import FilterLinkList from './filter-link-list-component.es6'
+import AddTodo from './add-todo-component'
+import TodoList from './todo-list-component'
+import FilterLinkList from './filter-link-list-component'
 
 let nextId = 0
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import FilterLink from './filter-link-component.es6'
+import FilterLink from './filter-link-component'
 
 const FilterLinkList = ({
   currentFilter,

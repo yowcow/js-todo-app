@@ -5,8 +5,8 @@ require('bootstrap')
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import todoStore from './todo-store.es6'
-import TodoApp from './todo-app-component.es6'
+import todoStore from './todo-store'
+import TodoApp from './todo-app-component'
 
 const getVisibleTodos = (
   todos,

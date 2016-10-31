@@ -1,6 +1,6 @@
 import expect from 'expect'
 import freeze from 'deep-freeze'
-import visibilityFilter from '../src/visibility-filter-reducer.es6'
+import visibilityFilter from '../src/visibility-filter-reducer'
 
 describe('visibility-filter-reducer', () => {
 
