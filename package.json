@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "gulp": "gulp",
-    "test": "mocha --compilers es6:babel-core/register",
+    "test": "mocha --compilers js:babel-core/register",
     "webpack": "webpack"
   },
   "author": "",
