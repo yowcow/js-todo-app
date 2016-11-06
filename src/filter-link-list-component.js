@@ -2,27 +2,23 @@ import React from 'react'
 import FilterLink from './filter-link-component'
 
 const FilterLinkList = ({
-  currentFilter,
-  onFilterClick
+  store
 }) => (
   <p>
     Show: {' '}
     <FilterLink
       filter="SHOW_ALL"
-      currentFilter={currentFilter}
-      onFilterClick={onFilterClick}
+      store={store}
     >All</FilterLink>
     {' '}
     <FilterLink
       filter="SHOW_ACTIVE"
-      currentFilter={currentFilter}
-      onFilterClick={onFilterClick}
+      store={store}
     >Active</FilterLink>
     {' '}
     <FilterLink
       filter="SHOW_COMPLETED"
-      currentFilter={currentFilter}
-      onFilterClick={onFilterClick}
+      store={store}
     >Completed</FilterLink>
   </p>
 )

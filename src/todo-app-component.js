@@ -30,17 +30,7 @@ const TodoApp = ({
         })
       }
     />
-    <FilterLinkList
-      currentFilter={visibilityFilter}
-      onFilterClick={
-        filter => {
-          store.dispatch({
-            type: 'SET_VISIBILITY_FILTER',
-            filter
-          })
-        }
-      }
-    />
+    <FilterLinkList store={store} />
   </div>
 )
 
